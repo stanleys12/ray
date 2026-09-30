@@ -86,5 +86,9 @@ def test_no_mount_when_auth_disabled(auth_env, tmp_path):
     assert "RAY_AUTH_TOKEN_PATH" not in command
 
 
+def test_container_removed_on_exit(auth_env):
+    assert _container_command().startswith("podman run --rm ")
+
+
 if __name__ == "__main__":
     sys.exit(pytest.main(["-sv", __file__]))

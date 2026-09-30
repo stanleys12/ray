@@ -81,6 +81,7 @@ def _modify_context_impl(
     container_command = [
         container_driver,
         "run",
+        "--rm",
         "-v",
         ray_tmp_dir + ":" + ray_tmp_dir,
         "--cgroup-manager=cgroupfs",
@@ -141,7 +142,7 @@ def _modify_context_impl(
     container_command.append(image_uri)
 
     # Example:
-    # podman run -v /tmp/ray:/tmp/ray
+    # podman run --rm -v /tmp/ray:/tmp/ray
     # --cgroup-manager=cgroupfs --network=host --pid=host --ipc=host
     # --userns=keep-id --env RAY_RAYLET_PID=23478 --env RAY_JOB_ID=$RAY_JOB_ID
     # --entrypoint python rayproject/ray:nightly-py39
